@@ -2,6 +2,7 @@ package com.example.sskender.demoapp
 
 import android.os.Bundle
 import android.support.v7.app.AppCompatActivity
+import android.widget.Toast
 import com.example.sskender.demoapp.model.UserInfo
 import kotlinx.android.synthetic.main.activity_edituserinfo.*
 
@@ -15,6 +16,7 @@ class EditUserInfo : AppCompatActivity() {
 
         saveButton.setOnClickListener {
             updateUserInfoModel()
+            showToast("User profile updated!")
             finish()
         }
     }
@@ -35,6 +37,11 @@ class EditUserInfo : AppCompatActivity() {
     private fun updateUserInfoModel() {
         UserInfo.firstName = firstNameTextEdit.text.toString()
         UserInfo.lastName = lastNameTextEdit.text.toString()
+    }
+
+
+    private fun showToast(message: String) {
+        Toast.makeText(this@EditUserInfo, message, Toast.LENGTH_SHORT).show()
     }
 
 }
