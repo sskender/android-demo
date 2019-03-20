@@ -1,9 +1,9 @@
 package com.example.sskender.demoapp
 
-import android.support.v7.app.AppCompatActivity
+import android.content.Intent
 import android.os.Bundle
-import com.example.sskender.demoapp.model.UserInfo.firstName
-import com.example.sskender.demoapp.model.UserInfo.lastName
+import android.support.v7.app.AppCompatActivity
+import com.example.sskender.demoapp.model.UserInfo
 import kotlinx.android.synthetic.main.activity_main.*
 
 class MainActivity : AppCompatActivity() {
@@ -12,9 +12,36 @@ class MainActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
 
-        firstNameTextView.text = firstName
-        lastNameTextView.text = lastName
+        updateTextView()
 
+        editButton.setOnClickListener {
+            editAction()
+        }
+    }
+
+
+    /**
+     * Set text views to values from UserInfo model
+     */
+    private fun updateTextView() {
+        firstNameTextView.text = UserInfo.firstName
+        lastNameTextView.text = UserInfo.lastName
+    }
+
+
+    /**
+     * This method is called when Edit button is clicked
+     */
+    private fun editAction() {
+        val intent = Intent(this, EditUserInfo::class.java)
+        startActivity(intent)
+    }
+
+
+    override fun onResume() {
+        super.onResume()
+
+        updateTextView()
     }
 
 }
